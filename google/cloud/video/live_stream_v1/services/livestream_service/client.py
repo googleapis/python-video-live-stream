@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -503,7 +503,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_create_channel():
                 # Create a client
@@ -638,7 +638,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_list_channels():
                 # Create a client
@@ -746,7 +746,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_get_channel():
                 # Create a client
@@ -848,7 +848,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_delete_channel():
                 # Create a client
@@ -970,7 +970,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_update_channel():
                 # Create a client
@@ -1108,7 +1108,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_start_channel():
                 # Create a client
@@ -1223,7 +1223,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_stop_channel():
                 # Create a client
@@ -1339,7 +1339,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_create_input():
                 # Create a client
@@ -1468,7 +1468,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_list_inputs():
                 # Create a client
@@ -1576,7 +1576,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_get_input():
                 # Create a client
@@ -1673,7 +1673,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_delete_input():
                 # Create a client
@@ -1795,7 +1795,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_update_input():
                 # Create a client
@@ -1926,7 +1926,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_create_event():
                 # Create a client
@@ -2046,7 +2046,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_list_events():
                 # Create a client
@@ -2155,7 +2155,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_get_event():
                 # Create a client
@@ -2253,7 +2253,7 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud.video import live_stream_v1
+                    from google.cloud.video import live_stream_v1
 
             def sample_delete_event():
                 # Create a client
