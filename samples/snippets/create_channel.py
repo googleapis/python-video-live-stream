@@ -21,7 +21,7 @@ Example usage:
         --channel_id <channel-id> --input_id <input-id> --output_uri <uri>
 """
 
-# [START live_stream_create_channel]
+# [START livestream_create_channel]
 
 import argparse
 
@@ -115,7 +115,7 @@ def create_channel(project_number, location, channel_id, input_id, output_uri):
     return response
 
 
-# [END live_stream_create_channel]
+# [END livestream_create_channel]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

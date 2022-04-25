@@ -19,7 +19,7 @@ Example usage:
     python list_channel_events.py --project_number <project-number> --location <location> --channel_id <channel-id>
 """
 
-# [START live_stream_list_channel_events]
+# [START livestream_list_channel_events]
 
 import argparse
 
@@ -49,7 +49,7 @@ def list_channel_events(project_number, location, channel_id):
     return responses
 
 
-# [END live_stream_list_channel_events]
+# [END livestream_list_channel_events]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

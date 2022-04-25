@@ -20,7 +20,7 @@ Example usage:
     python create_input.py --project_number <project-number> --location <location> --input_id <input-id>
 """
 
-# [START live_stream_create_input]
+# [START livestream_create_input]
 
 import argparse
 
@@ -51,7 +51,7 @@ def create_input(project_number, location, input_id):
     return response
 
 
-# [END live_stream_create_input]
+# [END livestream_create_input]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

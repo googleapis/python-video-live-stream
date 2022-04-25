@@ -22,7 +22,7 @@ Example usage:
         --channel_id <channel-id> --event_id <event-id>
 """
 
-# [START live_stream_create_channel_event]
+# [START livestream_create_channel_event]
 
 import argparse
 
@@ -61,7 +61,7 @@ def create_channel_event(project_number, location, channel_id, event_id):
     return response
 
 
-# [END live_stream_create_channel_event]
+# [END livestream_create_channel_event]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

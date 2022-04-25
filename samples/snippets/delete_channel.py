@@ -19,7 +19,7 @@ Example usage:
     python delete_channel.py --project_number <project-number> --location <location> --channel_id <channel-id>
 """
 
-# [START live_stream_delete_channel]
+# [START livestream_delete_channel]
 
 import argparse
 
@@ -44,7 +44,7 @@ def delete_channel(project_number, location, channel_id):
     return response
 
 
-# [END live_stream_delete_channel]
+# [END livestream_delete_channel]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

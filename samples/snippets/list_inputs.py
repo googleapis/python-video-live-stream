@@ -19,7 +19,7 @@ Example usage:
     python list_inputs.py --project_number <project-number> --location <location>
 """
 
-# [START live_stream_list_inputs]
+# [START livestream_list_inputs]
 
 import argparse
 
@@ -48,7 +48,7 @@ def list_inputs(project_number, location):
     return responses
 
 
-# [END live_stream_list_inputs]
+# [END livestream_list_inputs]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
