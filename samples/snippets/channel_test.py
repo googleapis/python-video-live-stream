@@ -17,7 +17,6 @@ import uuid
 
 from google.api_core.exceptions import FailedPrecondition, NotFound
 from google.cloud import storage
-
 import pytest
 
 import create_channel

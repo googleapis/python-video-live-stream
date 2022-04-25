@@ -16,7 +16,6 @@ import os
 import uuid
 
 from google.cloud import storage
-
 import pytest
 
 import create_channel
