@@ -16,18 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
 from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.oauth2 import service_account  # type: ignore
+import pkg_resources
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -36,15 +36,15 @@ except AttributeError:  # pragma: NO COVER
 
 from google.api_core import operation  # type: ignore
 from google.api_core import operation_async  # type: ignore
-from google.cloud.video.live_stream_v1.services.livestream_service import pagers
-from google.cloud.video.live_stream_v1.types import outputs
-from google.cloud.video.live_stream_v1.types import resources
-from google.cloud.video.live_stream_v1.types import service
 from google.protobuf import empty_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 from google.rpc import status_pb2  # type: ignore
-from .transports.base import LivestreamServiceTransport, DEFAULT_CLIENT_INFO
+
+from google.cloud.video.live_stream_v1.services.livestream_service import pagers
+from google.cloud.video.live_stream_v1.types import outputs, resources, service
+
+from .transports.base import DEFAULT_CLIENT_INFO, LivestreamServiceTransport
 from .transports.grpc import LivestreamServiceGrpcTransport
 from .transports.grpc_asyncio import LivestreamServiceGrpcAsyncIOTransport
 
@@ -500,7 +500,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
         r"""Creates a channel with the provided unique ID in the
         specified region.
 
-
         .. code-block:: python
 
             from google.cloud.video import live_stream_v1
@@ -634,7 +633,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
     ) -> pagers.ListChannelsPager:
         r"""Returns a list of all channels in the specified
         region.
-
 
         .. code-block:: python
 
@@ -1105,7 +1103,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
         pipeline will be created only when the StartChannel
         request is received by the server.
 
-
         .. code-block:: python
 
             from google.cloud.video import live_stream_v1
@@ -1219,7 +1216,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
         r"""Stops the specified channel. Part of the video
         pipeline will be released when the StopChannel request
         is received by the server.
-
 
         .. code-block:: python
 
@@ -1335,7 +1331,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
     ) -> operation.Operation:
         r"""Creates an input with the provided unique ID in the
         specified region.
-
 
         .. code-block:: python
 
@@ -1923,7 +1918,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
         r"""Creates an event with the provided unique ID in the
         specified channel.
 
-
         .. code-block:: python
 
             from google.cloud.video import live_stream_v1
@@ -2042,7 +2036,6 @@ class LivestreamServiceClient(metaclass=LivestreamServiceClientMeta):
     ) -> pagers.ListEventsPager:
         r"""Returns a list of all events in the specified
         channel.
-
 
         .. code-block:: python
 
