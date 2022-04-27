@@ -33,7 +33,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 from google.protobuf import duration_pb2 as duration
 
 
-def create_channel_event(project_number, location, channel_id, event_id):
+def create_channel_event(project_number: str, location: str, channel_id: str, event_id: str) -> str:
     """Creates a channel event.
     Args:
         project_number: The GCP project number.

@@ -16,6 +16,7 @@ import os
 import uuid
 
 from google.api_core.exceptions import NotFound
+import pytest
 
 import create_input
 import delete_input
@@ -25,12 +26,12 @@ import update_input
 import utils
 
 project_name = os.environ["GOOGLE_CLOUD_PROJECT"]
-project_number = os.environ["GOOGLE_CLOUD_PROJECT_NUMBER"]
+project_number = utils.get_project_number(project_name)
 location = "us-central1"
 input_id = f"my-python-test-input-{uuid.uuid4()}"
 
 
-def test_input_operations(capsys):
+def test_input_operations(capsys: pytest.fixture) -> None:
     # Clean up old resources in the test project
     responses = list_inputs.list_inputs(project_number, location)
     for response in responses:

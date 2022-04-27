@@ -28,7 +28,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def list_channel_events(project_number, location, channel_id):
+def list_channel_events(project_number: str, location: str, channel_id: str) -> list:
     """Lists all events for a channel.
     Args:
         project_number: The GCP project number.

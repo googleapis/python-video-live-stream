@@ -28,7 +28,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def get_input(project_number, location, input_id):
+def get_input(project_number: str, location: str, input_id: str) -> str:
     """Gets an input.
     Args:
         project_number: The GCP project number.

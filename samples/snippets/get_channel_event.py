@@ -29,7 +29,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def get_channel_event(project_number, location, channel_id, event_id):
+def get_channel_event(project_number: str, location: str, channel_id: str, event_id: str) -> str:
     """Gets a channel.
     Args:
         project_number: The GCP project number.

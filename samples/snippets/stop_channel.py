@@ -28,7 +28,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def stop_channel(project_number, location, channel_id):
+def stop_channel(project_number: str, location: str, channel_id: str) -> None:
     """Stops a channel.
     Args:
         project_number: The GCP project number.
@@ -39,10 +39,8 @@ def stop_channel(project_number, location, channel_id):
 
     name = f"projects/{project_number}/locations/{location}/channels/{channel_id}"
     operation = client.stop_channel(name=name)
-    response = operation.result()
+    operation.result()
     print("Stopped channel")
-
-    return response
 
 
 # [END livestream_stop_channel]

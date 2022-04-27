@@ -29,7 +29,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def delete_channel_event(project_number, location, channel_id, event_id):
+def delete_channel_event(project_number: str, location: str, channel_id: str, event_id: str) -> None:
     """Deletes a channel event.
     Args:
         project_number: The GCP project number.
@@ -40,10 +40,8 @@ def delete_channel_event(project_number, location, channel_id, event_id):
     client = LivestreamServiceClient()
 
     name = f"projects/{project_number}/locations/{location}/channels/{channel_id}/events/{event_id}"
-    response = client.delete_event(name=name)
+    client.delete_event(name=name)
     print("Deleted channel event")
-
-    return response
 
 
 # [END livestream_delete_channel_event]

@@ -31,7 +31,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 from google.protobuf import field_mask_pb2 as field_mask
 
 
-def update_channel(project_number, location, channel_id, input_id):
+def update_channel(project_number: str, location: str, channel_id: str, input_id: str) -> str:
     """Updates a channel.
     Args:
         project_number: The GCP project number.

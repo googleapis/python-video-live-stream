@@ -28,7 +28,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def list_inputs(project_number, location):
+def list_inputs(project_number: str, location: str) -> list:
     """Lists all inputs in a location.
     Args:
         project_number: The GCP project number.

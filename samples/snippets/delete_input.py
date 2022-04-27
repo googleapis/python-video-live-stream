@@ -28,7 +28,7 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def delete_input(project_number, location, input_id):
+def delete_input(project_number: str, location: str, input_id: str) -> None:
     """Deletes an input.
     Args:
         project_number: The GCP project number.
@@ -38,10 +38,9 @@ def delete_input(project_number, location, input_id):
     client = LivestreamServiceClient()
 
     name = f"projects/{project_number}/locations/{location}/inputs/{input_id}"
-    response = client.delete_input(name=name)
+    operation = client.delete_input(name=name)
+    operation.result()
     print("Deleted input")
-
-    return response
 
 
 # [END livestream_delete_input]

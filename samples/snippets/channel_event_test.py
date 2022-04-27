@@ -15,7 +15,6 @@
 import os
 import uuid
 
-from google.cloud import storage
 import pytest
 
 import create_channel
@@ -28,9 +27,10 @@ import get_channel_event
 import list_channel_events
 import start_channel
 import stop_channel
+import utils
 
 project_name = os.environ["GOOGLE_CLOUD_PROJECT"]
-project_number = os.environ["GOOGLE_CLOUD_PROJECT_NUMBER"]
+project_number = utils.get_project_number(project_name)
 location = "us-central1"
 input_id = f"python-test-input-{uuid.uuid4()}"
 channel_id = f"python-test-channel-{uuid.uuid4()}"
@@ -39,16 +39,7 @@ output_bucket_name = f"python-test-bucket-{uuid.uuid4()}"
 output_uri = f"gs://{output_bucket_name}/channel-test/"
 
 
-@pytest.fixture(scope="module")
-def test_bucket():
-    storage_client = storage.Client()
-    bucket = storage_client.create_bucket(output_bucket_name)
-
-    yield bucket
-    bucket.delete(force=True)
-
-
-def test_channel_event_operations(capsys, test_bucket):
+def test_channel_event_operations(capsys: pytest.fixture) -> None:
 
     # Set up
 

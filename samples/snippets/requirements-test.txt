@@ -1,2 +1,2 @@
 pytest==7.0.1
-google-cloud-storage==2.2.1
+google-cloud-resource-manager==1.4.1

@@ -16,7 +16,6 @@ import os
 import uuid
 
 from google.api_core.exceptions import FailedPrecondition, NotFound
-from google.cloud import storage
 import pytest
 
 import create_channel
@@ -33,7 +32,7 @@ import update_channel
 import utils
 
 project_name = os.environ["GOOGLE_CLOUD_PROJECT"]
-project_number = os.environ["GOOGLE_CLOUD_PROJECT_NUMBER"]
+project_number = utils.get_project_number(project_name)
 location = "us-central1"
 input_id = f"python-test-input-{uuid.uuid4()}"
 updated_input_id = f"python-test-up-input-{uuid.uuid4()}"
@@ -42,16 +41,7 @@ output_bucket_name = f"python-test-bucket-{uuid.uuid4()}"
 output_uri = f"gs://{output_bucket_name}/channel-test/"
 
 
-@pytest.fixture(scope="module")
-def test_bucket():
-    storage_client = storage.Client()
-    bucket = storage_client.create_bucket(output_bucket_name)
-
-    yield bucket
-    bucket.delete(force=True)
-
-
-def test_channel_operations(capsys, test_bucket):
+def test_channel_operations(capsys: pytest.fixture) -> None:
 
     # Clean up old resources in the test project
     channel_responses = list_channels.list_channels(project_number, location)
