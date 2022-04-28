@@ -14,9 +14,9 @@ Python Client for Live Stream API
    :target: https://pypi.org/project/google-cloud-video-live-stream/
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-video-live-stream.svg
    :target: https://pypi.org/project/google-cloud-video-live-stream/
-.. _Live Stream API: https://cloud.google.com/python/docs/reference/livestream/latest
+.. _Live Stream API: https://cloud.google.com/livestream
 .. _Client Library Documentation: https://cloud.google.com/python/docs/reference/livestream/latest
-.. _Product Documentation:  https://cloud.google.com/python/docs/reference/livestream/latest
+.. _Product Documentation:  https://cloud.google.com/livestream/docs
 
 Quick Start
 -----------
@@ -85,5 +85,5 @@ Next Steps
    APIs that we cover.
 
 .. _Samples: https://github.com/googleapis/python-video-live-stream/blob/main/samples/snippets/README.md
-.. _Live Stream API Product documentation:  https://cloud.google.com/python/docs/reference/livestream/latest
+.. _Live Stream API Product documentation:  https://cloud.google.com/livestream/docs
 .. _README: https://github.com/googleapis/google-cloud-python/blob/main/README.rst
