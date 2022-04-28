@@ -53,9 +53,7 @@ def list_channel_events(project_id: str, location: str, channel_id: str) -> list
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--project_id", help="Your Cloud project ID.", required=True
-    )
+    parser.add_argument("--project_id", help="Your Cloud project ID.", required=True)
     parser.add_argument(
         "--location",
         help="The location of the channel.",

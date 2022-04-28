@@ -52,9 +52,7 @@ def list_channels(project_id: str, location: str) -> list:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--project_id", help="Your Cloud project ID.", required=True
-    )
+    parser.add_argument("--project_id", help="Your Cloud project ID.", required=True)
     parser.add_argument(
         "--location",
         help="The location of the channels.",

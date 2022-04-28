@@ -29,7 +29,9 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def get_channel_event(project_id: str, location: str, channel_id: str, event_id: str) -> str:
+def get_channel_event(
+    project_id: str, location: str, channel_id: str, event_id: str
+) -> str:
     """Gets a channel.
     Args:
         project_id: The GCP project ID.
@@ -50,9 +52,7 @@ def get_channel_event(project_id: str, location: str, channel_id: str, event_id:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--project_id", help="Your Cloud project ID.", required=True
-    )
+    parser.add_argument("--project_id", help="Your Cloud project ID.", required=True)
     parser.add_argument(
         "--location",
         help="The location of the channel.",

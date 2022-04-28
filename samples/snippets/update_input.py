@@ -64,9 +64,7 @@ def update_input(project_id: str, location: str, input_id: str) -> str:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--project_id", help="Your Cloud project ID.", required=True
-    )
+    parser.add_argument("--project_id", help="Your Cloud project ID.", required=True)
     parser.add_argument(
         "--location",
         help="The location of the input.",

@@ -1,6 +1,5 @@
 from google.protobuf import timestamp_pb2
 
-
 seconds_per_hour = 3600
 
 
