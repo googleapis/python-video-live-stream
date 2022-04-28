@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for listing all inputs in a location.
 Example usage:
-    python list_inputs.py --project_number <project-number> --location <location>
+    python list_inputs.py --project_id <project-id> --location <location>
 """
 
 # [START livestream_list_inputs]
@@ -28,15 +28,15 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def list_inputs(project_number: str, location: str) -> list:
+def list_inputs(project_id: str, location: str) -> list:
     """Lists all inputs in a location.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the inputs."""
 
     client = LivestreamServiceClient()
 
-    parent = f"projects/{project_number}/locations/{location}"
+    parent = f"projects/{project_id}/locations/{location}"
     page_result = client.list_inputs(parent=parent)
     print("Inputs:")
 
@@ -53,7 +53,7 @@ def list_inputs(project_number: str, location: str) -> list:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -62,6 +62,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     list_inputs(
-        args.project_number,
+        args.project_id,
         args.location,
     )

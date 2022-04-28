@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for getting a channel event.
 Example usage:
-    python get_channel.py --project_number <project-number> --location <location> \
+    python get_channel.py --project_id <project-id> --location <location> \
         --channel_id <channel-id> --event_id <event-id>
 """
 
@@ -29,17 +29,17 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def get_channel_event(project_number: str, location: str, channel_id: str, event_id: str) -> str:
+def get_channel_event(project_id: str, location: str, channel_id: str, event_id: str) -> str:
     """Gets a channel.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the channel.
         channel_id: The user-defined channel ID.
         event_id: The user-defined event ID."""
 
     client = LivestreamServiceClient()
 
-    name = f"projects/{project_number}/locations/{location}/channels/{channel_id}/events/{event_id}"
+    name = f"projects/{project_id}/locations/{location}/channels/{channel_id}/events/{event_id}"
     response = client.get_event(name=name)
     print(f"Channel event: {response.name}")
 
@@ -51,7 +51,7 @@ def get_channel_event(project_number: str, location: str, channel_id: str, event
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     get_channel_event(
-        args.project_number,
+        args.project_id,
         args.location,
         args.channel_id,
         args.event_id,

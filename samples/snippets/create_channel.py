@@ -17,7 +17,7 @@
 """Google Cloud Live Stream sample for creating a channel. A channel resource
     represents the processor that performs a user-defined "streaming" operation.
 Example usage:
-    python create_channel.py --project_number <project-number> --location <location> \
+    python create_channel.py --project_id <project-id> --location <location> \
         --channel_id <channel-id> --input_id <input-id> --output_uri <uri>
 """
 
@@ -32,19 +32,19 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 from google.protobuf import duration_pb2 as duration
 
 
-def create_channel(project_number: str, location: str, channel_id: str, input_id: str, output_uri: str) -> str:
+def create_channel(project_id: str, location: str, channel_id: str, input_id: str, output_uri: str) -> str:
     """Creates a channel.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location in which to create the channel.
         channel_id: The user-defined channel ID.
         input_id: The user-defined input ID.
         output_uri: Uri of the channel output folder in a Cloud Storage bucket."""
 
     client = LivestreamServiceClient()
-    parent = f"projects/{project_number}/locations/{location}"
-    input = f"projects/{project_number}/locations/{location}/inputs/{input_id}"
-    name = f"projects/{project_number}/locations/{location}/channels/{channel_id}"
+    parent = f"projects/{project_id}/locations/{location}"
+    input = f"projects/{project_id}/locations/{location}/inputs/{input_id}"
+    name = f"projects/{project_id}/locations/{location}/channels/{channel_id}"
 
     channel = live_stream_v1.types.Channel(
         name=name,
@@ -109,7 +109,7 @@ def create_channel(project_number: str, location: str, channel_id: str, input_id
     operation = client.create_channel(
         parent=parent, channel=channel, channel_id=channel_id
     )
-    response = operation.result()
+    response = operation.result(60)
     print(f"Channel: {response.name}")
 
     return response
@@ -120,7 +120,7 @@ def create_channel(project_number: str, location: str, channel_id: str, input_id
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     create_channel(
-        args.project_number,
+        args.project_id,
         args.location,
         args.channel_id,
         args.input_id,

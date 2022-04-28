@@ -27,10 +27,8 @@ import get_channel_event
 import list_channel_events
 import start_channel
 import stop_channel
-import utils
 
 project_name = os.environ["GOOGLE_CLOUD_PROJECT"]
-project_number = utils.get_project_number(project_name)
 location = "us-central1"
 input_id = f"python-test-input-{uuid.uuid4()}"
 channel_id = f"python-test-channel-{uuid.uuid4()}"
@@ -46,52 +44,50 @@ def test_channel_event_operations(capsys: pytest.fixture) -> None:
     channel_name_project_id = (
         f"projects/{project_name}/locations/{location}/channels/{channel_id}"
     )
-
     event_name_project_id = f"projects/{project_name}/locations/{location}/channels/{channel_id}/events/{event_id}"
-    event_name_project_number = f"projects/{project_number}/locations/{location}/channels/{channel_id}/events/{event_id}"
 
-    create_input.create_input(project_number, location, input_id)
+    create_input.create_input(project_name, location, input_id)
 
     create_channel.create_channel(
-        project_number, location, channel_id, input_id, output_uri
+        project_name, location, channel_id, input_id, output_uri
     )
     out, _ = capsys.readouterr()
     assert channel_name_project_id in out
 
-    start_channel.start_channel(project_number, location, channel_id)
+    start_channel.start_channel(project_name, location, channel_id)
     out, _ = capsys.readouterr()
     assert "Started channel" in out
 
     # Tests
 
     create_channel_event.create_channel_event(
-        project_number, location, channel_id, event_id
+        project_name, location, channel_id, event_id
     )
     out, _ = capsys.readouterr()
     assert event_name_project_id in out
 
-    get_channel_event.get_channel_event(project_number, location, channel_id, event_id)
+    get_channel_event.get_channel_event(project_name, location, channel_id, event_id)
     out, _ = capsys.readouterr()
-    assert event_name_project_number in out
+    assert event_name_project_id in out
 
-    list_channel_events.list_channel_events(project_number, location, channel_id)
+    list_channel_events.list_channel_events(project_name, location, channel_id)
     out, _ = capsys.readouterr()
-    assert event_name_project_number in out
+    assert event_name_project_id in out
 
     delete_channel_event.delete_channel_event(
-        project_number, location, channel_id, event_id
+        project_name, location, channel_id, event_id
     )
     out, _ = capsys.readouterr()
     assert "Deleted channel event" in out
 
     # Clean up
 
-    stop_channel.stop_channel(project_number, location, channel_id)
+    stop_channel.stop_channel(project_name, location, channel_id)
     out, _ = capsys.readouterr()
     assert "Stopped channel" in out
 
-    delete_channel.delete_channel(project_number, location, channel_id)
+    delete_channel.delete_channel(project_name, location, channel_id)
     out, _ = capsys.readouterr()
     assert "Deleted channel" in out
 
-    delete_input.delete_input(project_number, location, input_id)
+    delete_input.delete_input(project_name, location, input_id)

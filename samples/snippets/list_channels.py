@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for listing all channels in a location.
 Example usage:
-    python list_channels.py --project_number <project-number> --location <location>
+    python list_channels.py --project_id <project-id> --location <location>
 """
 
 # [START livestream_list_channels]
@@ -28,15 +28,15 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def list_channels(project_number: str, location: str) -> list:
+def list_channels(project_id: str, location: str) -> list:
     """Lists all channels in a location.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the channels."""
 
     client = LivestreamServiceClient()
 
-    parent = f"projects/{project_number}/locations/{location}"
+    parent = f"projects/{project_id}/locations/{location}"
     page_result = client.list_channels(parent=parent)
     print("Channels:")
 
@@ -53,7 +53,7 @@ def list_channels(project_number: str, location: str) -> list:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -62,6 +62,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     list_channels(
-        args.project_number,
+        args.project_id,
         args.location,
     )

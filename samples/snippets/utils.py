@@ -1,4 +1,3 @@
-from google.cloud import resourcemanager_v3
 from google.protobuf import timestamp_pb2
 
 
@@ -17,13 +16,3 @@ def is_resource_stale(create_time: str) -> bool:
         return True
     else:
         return False
-
-
-def get_project_number(project_name: str) -> str:
-    client = resourcemanager_v3.ProjectsClient()
-    request = resourcemanager_v3.GetProjectRequest(
-        name=f"projects/{project_name}"
-    )
-    response = client.get_project(request=request)
-    str_slice = response.name.split("/")
-    return str_slice[len(str_slice) - 1].rstrip("\n")

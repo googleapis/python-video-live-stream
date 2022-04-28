@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for deleting a channel.
 Example usage:
-    python delete_channel.py --project_number <project-number> --location <location> --channel_id <channel-id>
+    python delete_channel.py --project_id <project-id> --location <location> --channel_id <channel-id>
 """
 
 # [START livestream_delete_channel]
@@ -28,18 +28,18 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def delete_channel(project_number: str, location: str, channel_id: str) -> None:
+def delete_channel(project_id: str, location: str, channel_id: str) -> None:
     """Deletes a channel.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the channel.
         channel_id: The user-defined channel ID."""
 
     client = LivestreamServiceClient()
 
-    name = f"projects/{project_number}/locations/{location}/channels/{channel_id}"
+    name = f"projects/{project_id}/locations/{location}/channels/{channel_id}"
     operation = client.delete_channel(name=name)
-    operation.result()
+    operation.result(60)
     print("Deleted channel")
 
 
@@ -48,7 +48,7 @@ def delete_channel(project_number: str, location: str, channel_id: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     delete_channel(
-        args.project_number,
+        args.project_id,
         args.location,
         args.channel_id,
     )

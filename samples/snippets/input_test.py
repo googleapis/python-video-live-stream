@@ -26,48 +26,44 @@ import update_input
 import utils
 
 project_name = os.environ["GOOGLE_CLOUD_PROJECT"]
-project_number = utils.get_project_number(project_name)
 location = "us-central1"
 input_id = f"my-python-test-input-{uuid.uuid4()}"
 
 
 def test_input_operations(capsys: pytest.fixture) -> None:
     # Clean up old resources in the test project
-    responses = list_inputs.list_inputs(project_number, location)
+    responses = list_inputs.list_inputs(project_name, location)
     for response in responses:
         next_input_id = response.name.rsplit("/", 1)[-1]
         if utils.is_resource_stale(response.create_time):
             try:
-                delete_input.delete_input(project_number, location, next_input_id)
+                delete_input.delete_input(project_name, location, next_input_id)
             except NotFound as e:
                 print(f"Ignoring NotFound, details: {e}")
 
     input_name_project_id = (
         f"projects/{project_name}/locations/{location}/inputs/{input_id}"
     )
-    input_name_project_number = (
-        f"projects/{project_number}/locations/{location}/inputs/{input_id}"
-    )
 
     # Tests
 
-    create_input.create_input(project_number, location, input_id)
+    create_input.create_input(project_name, location, input_id)
     out, _ = capsys.readouterr()
     assert input_name_project_id in out
 
-    list_inputs.list_inputs(project_number, location)
+    list_inputs.list_inputs(project_name, location)
     out, _ = capsys.readouterr()
-    assert input_name_project_number in out
+    assert input_name_project_id in out
 
-    response = update_input.update_input(project_number, location, input_id)
+    response = update_input.update_input(project_name, location, input_id)
     out, _ = capsys.readouterr()
     assert input_name_project_id in out
     assert response.preprocessing_config.crop.top_pixels == 5
 
-    get_input.get_input(project_number, location, input_id)
+    get_input.get_input(project_name, location, input_id)
     out, _ = capsys.readouterr()
-    assert input_name_project_number in out
+    assert input_name_project_id in out
 
-    delete_input.delete_input(project_number, location, input_id)
+    delete_input.delete_input(project_name, location, input_id)
     out, _ = capsys.readouterr()
     assert "Deleted input" in out

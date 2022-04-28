@@ -17,7 +17,7 @@
 """Google Cloud Live Stream sample for updating an input endpoint. This sample
     adds a preprocessing configuration to an existing input.
 Example usage:
-    python update_input.py --project_number <project-number> --location <location> --input_id <input-id>
+    python update_input.py --project_id <project-id> --location <location> --input_id <input-id>
 """
 
 # [START livestream_update_input]
@@ -31,16 +31,16 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 from google.protobuf import field_mask_pb2 as field_mask
 
 
-def update_input(project_number: str, location: str, input_id: str) -> str:
+def update_input(project_id: str, location: str, input_id: str) -> str:
     """Updates an input.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the input.
         input_id: The user-defined input ID."""
 
     client = LivestreamServiceClient()
 
-    name = f"projects/{project_number}/locations/{location}/inputs/{input_id}"
+    name = f"projects/{project_id}/locations/{location}/inputs/{input_id}"
 
     input = live_stream_v1.types.Input(
         name=name,
@@ -54,7 +54,7 @@ def update_input(project_number: str, location: str, input_id: str) -> str:
     update_mask = field_mask.FieldMask(paths=["preprocessing_config"])
 
     operation = client.update_input(input=input, update_mask=update_mask)
-    response = operation.result()
+    response = operation.result(60)
     print(f"Updated input: {response.name}")
 
     return response
@@ -65,7 +65,7 @@ def update_input(project_number: str, location: str, input_id: str) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     update_input(
-        args.project_number,
+        args.project_id,
         args.location,
         args.input_id,
     )

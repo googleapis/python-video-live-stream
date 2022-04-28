@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for getting an input.
 Example usage:
-    python get_input.py --project_number <project-number> --location <location> --input_id <input-id>
+    python get_input.py --project_id <project-id> --location <location> --input_id <input-id>
 """
 
 # [START livestream_get_input]
@@ -28,16 +28,16 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def get_input(project_number: str, location: str, input_id: str) -> str:
+def get_input(project_id: str, location: str, input_id: str) -> str:
     """Gets an input.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the input.
         input_id: The user-defined input ID."""
 
     client = LivestreamServiceClient()
 
-    name = f"projects/{project_number}/locations/{location}/inputs/{input_id}"
+    name = f"projects/{project_id}/locations/{location}/inputs/{input_id}"
     response = client.get_input(name=name)
     print(f"Input: {response.name}")
 
@@ -49,7 +49,7 @@ def get_input(project_number: str, location: str, input_id: str) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     get_input(
-        args.project_number,
+        args.project_id,
         args.location,
         args.input_id,
     )

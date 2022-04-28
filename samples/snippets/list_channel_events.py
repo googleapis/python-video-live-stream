@@ -16,7 +16,7 @@
 
 """Google Cloud Live Stream sample for listing all events for a channel.
 Example usage:
-    python list_channel_events.py --project_number <project-number> --location <location> --channel_id <channel-id>
+    python list_channel_events.py --project_id <project-id> --location <location> --channel_id <channel-id>
 """
 
 # [START livestream_list_channel_events]
@@ -28,16 +28,16 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 )
 
 
-def list_channel_events(project_number: str, location: str, channel_id: str) -> list:
+def list_channel_events(project_id: str, location: str, channel_id: str) -> list:
     """Lists all events for a channel.
     Args:
-        project_number: The GCP project number.
+        project_id: The GCP project ID.
         location: The location of the channel.
         channel_id: The user-defined channel ID."""
 
     client = LivestreamServiceClient()
 
-    parent = f"projects/{project_number}/locations/{location}/channels/{channel_id}"
+    parent = f"projects/{project_id}/locations/{location}/channels/{channel_id}"
     page_result = client.list_events(parent=parent)
     print("Events:")
 
@@ -54,7 +54,7 @@ def list_channel_events(project_number: str, location: str, channel_id: str) -> 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--project_number", help="Your Cloud project number.", required=True
+        "--project_id", help="Your Cloud project ID.", required=True
     )
     parser.add_argument(
         "--location",
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     list_channel_events(
-        args.project_number,
+        args.project_id,
         args.location,
         args.channel_id,
     )
