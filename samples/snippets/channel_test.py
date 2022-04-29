@@ -72,7 +72,9 @@ def test_channel_operations(capsys: pytest.fixture) -> None:
                 except FailedPrecondition as e:
                     print(f"Ignoring FailedPrecondition, try to stop channel: {e}")
                     try:
-                        stop_channel.stop_channel(project_name, location, next_channel_id)
+                        stop_channel.stop_channel(
+                            project_name, location, next_channel_id
+                        )
                     except FailedPrecondition as e:
                         print(f"Ignoring FailedPrecondition, details: {e}")
                 except NotFound as e:
