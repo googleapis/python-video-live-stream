@@ -5287,7 +5287,6 @@ def test_livestream_service_transport_auth_adc(transport_class):
     [
         transports.LivestreamServiceGrpcTransport,
         transports.LivestreamServiceGrpcAsyncIOTransport,
-        transports.LivestreamServiceRestTransport,
     ],
 )
 def test_livestream_service_transport_auth_gdch_credentials(transport_class):
