@@ -3,7 +3,7 @@ Python Client for Live Stream API API
 
 |preview| |pypi| |versions|
 
-`Live Stream API API`_: 
+`Live Stream API API`_: transcodes mezzanine live signals into direct-to-consumer streaming formats, including Dynamic Adaptive Streaming over HTTP (DASH/MPEG-DASH), and HTTP Live Streaming (HLS), for multiple device platforms.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
