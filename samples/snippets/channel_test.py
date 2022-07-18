@@ -19,6 +19,7 @@ from google.api_core.exceptions import FailedPrecondition, NotFound
 import pytest
 
 import create_channel
+import create_channel_with_backup_input
 import create_input
 import delete_channel
 import delete_channel_event
@@ -69,6 +70,14 @@ def test_channel_operations(capsys: pytest.fixture) -> None:
                     delete_channel.delete_channel(
                         project_name, location, next_channel_id
                     )
+                except FailedPrecondition as e:
+                    print(f"Ignoring FailedPrecondition, try to stop channel: {e}")
+                    try:
+                        stop_channel.stop_channel(
+                            project_name, location, next_channel_id
+                        )
+                    except FailedPrecondition as e:
+                        print(f"Ignoring FailedPrecondition, details: {e}")
                 except NotFound as e:
                     print(f"Ignoring NotFound, details: {e}")
             except NotFound as e:
@@ -126,7 +135,14 @@ def test_channel_operations(capsys: pytest.fixture) -> None:
     out, _ = capsys.readouterr()
     assert "Deleted channel" in out
 
+    create_channel_with_backup_input.create_channel_with_backup_input(
+        project_name, location, channel_id, input_id, updated_input_id, output_uri
+    )
+    out, _ = capsys.readouterr()
+    assert channel_name_project_id in out
+
     # Clean up
 
+    delete_channel.delete_channel(project_name, location, channel_id)
     delete_input.delete_input(project_name, location, input_id)
     delete_input.delete_input(project_name, location, updated_input_id)

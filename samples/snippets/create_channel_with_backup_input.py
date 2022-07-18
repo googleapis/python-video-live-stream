@@ -14,14 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Google Cloud Live Stream sample for creating a channel. A channel resource
-    represents the processor that performs a user-defined "streaming" operation.
+"""Google Cloud Live Stream sample for creating a channel with a backup input.
+    A channel resource represents the processor that performs a user-defined
+    "streaming" operation.
 Example usage:
-    python create_channel.py --project_id <project-id> --location <location> \
-        --channel_id <channel-id> --input_id <input-id> --output_uri <uri>
+    python create_channel_with_backup_input.py --project_id <project-id> \
+        --location <location> --channel_id <channel-id> \
+        --primary_input_id <primary-input-id> \
+        --backup_input_id <backup-input-id> --output_uri <uri>
 """
 
-# [START livestream_create_channel]
+# [START livestream_create_channel_with_backup_input]
 
 import argparse
 
@@ -32,28 +35,46 @@ from google.cloud.video.live_stream_v1.services.livestream_service import (
 from google.protobuf import duration_pb2 as duration
 
 
-def create_channel(
-    project_id: str, location: str, channel_id: str, input_id: str, output_uri: str
+def create_channel_with_backup_input(
+    project_id: str,
+    location: str,
+    channel_id: str,
+    primary_input_id: str,
+    backup_input_id: str,
+    output_uri: str,
 ) -> str:
     """Creates a channel.
     Args:
         project_id: The GCP project ID.
         location: The location in which to create the channel.
         channel_id: The user-defined channel ID.
-        input_id: The user-defined input ID.
+        primary_input_id: The user-defined primary input ID.
+        backup_input_id: The user-defined backup input ID.
         output_uri: Uri of the channel output folder in a Cloud Storage bucket."""
 
     client = LivestreamServiceClient()
     parent = f"projects/{project_id}/locations/{location}"
-    input = f"projects/{project_id}/locations/{location}/inputs/{input_id}"
+    primary_input = (
+        f"projects/{project_id}/locations/{location}/inputs/{primary_input_id}"
+    )
+    backup_input = (
+        f"projects/{project_id}/locations/{location}/inputs/{backup_input_id}"
+    )
     name = f"projects/{project_id}/locations/{location}/channels/{channel_id}"
 
     channel = live_stream_v1.types.Channel(
         name=name,
         input_attachments=[
             live_stream_v1.types.InputAttachment(
-                key="my-input",
-                input=input,
+                key="my-primary-input",
+                input=primary_input,
+                automatic_failover=live_stream_v1.types.InputAttachment.AutomaticFailover(
+                    input_keys=["my-backup-input"],
+                ),
+            ),
+            live_stream_v1.types.InputAttachment(
+                key="my-backup-input",
+                input=backup_input,
             ),
         ],
         output=live_stream_v1.types.Channel.Output(
@@ -117,7 +138,7 @@ def create_channel(
     return response
 
 
-# [END livestream_create_channel]
+# [END livestream_create_channel_with_backup_input]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -133,8 +154,13 @@ if __name__ == "__main__":
         required=True,
     )
     parser.add_argument(
-        "--input_id",
-        help="The user-defined input ID.",
+        "--primary_input_id",
+        help="The user-defined primary input ID.",
+        required=True,
+    )
+    parser.add_argument(
+        "--backup_input_id",
+        help="The user-defined backup input ID.",
         required=True,
     )
     parser.add_argument(
@@ -143,10 +169,11 @@ if __name__ == "__main__":
         required=True,
     )
     args = parser.parse_args()
-    create_channel(
+    create_channel_with_backup_input(
         args.project_id,
         args.location,
         args.channel_id,
-        args.input_id,
+        args.primary_input_id,
+        args.backup_input_id,
         args.output_uri,
     )
