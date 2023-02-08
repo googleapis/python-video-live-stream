@@ -14,25 +14,27 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -40,13 +42,13 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.video.live_stream_v1.types import resources
-from google.cloud.video.live_stream_v1.types import service
 from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import LivestreamServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.video.live_stream_v1.types import resources, service
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import LivestreamServiceTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -199,7 +201,10 @@ class LivestreamServiceRestInterceptor:
 
 
     """
-    def pre_create_channel(self, request: service.CreateChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_channel(
+        self, request: service.CreateChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -207,7 +212,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_channel(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_channel(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_channel
 
         Override in a subclass to manipulate the response
@@ -215,7 +222,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_event(self, request: service.CreateEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateEventRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_event(
+        self, request: service.CreateEventRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_event
 
         Override in a subclass to manipulate the request or metadata
@@ -231,7 +241,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_input(self, request: service.CreateInputRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateInputRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_input(
+        self, request: service.CreateInputRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateInputRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_input
 
         Override in a subclass to manipulate the request or metadata
@@ -239,7 +252,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_input(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_input(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_input
 
         Override in a subclass to manipulate the response
@@ -247,7 +262,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_channel(self, request: service.DeleteChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_channel(
+        self, request: service.DeleteChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DeleteChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -255,7 +273,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_channel(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_channel(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_channel
 
         Override in a subclass to manipulate the response
@@ -263,7 +283,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_event(self, request: service.DeleteEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteEventRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_event(
+        self, request: service.DeleteEventRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DeleteEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_event
 
         Override in a subclass to manipulate the request or metadata
@@ -271,7 +294,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_input(self, request: service.DeleteInputRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DeleteInputRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_input(
+        self, request: service.DeleteInputRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DeleteInputRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_input
 
         Override in a subclass to manipulate the request or metadata
@@ -279,7 +304,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_input(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_input(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_input
 
         Override in a subclass to manipulate the response
@@ -287,7 +314,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_channel(self, request: service.GetChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_channel(
+        self, request: service.GetChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -303,7 +333,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_event(self, request: service.GetEventRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetEventRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_event(
+        self, request: service.GetEventRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetEventRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_event
 
         Override in a subclass to manipulate the request or metadata
@@ -319,7 +352,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_input(self, request: service.GetInputRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetInputRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_input(
+        self, request: service.GetInputRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetInputRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_input
 
         Override in a subclass to manipulate the request or metadata
@@ -335,7 +371,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_channels(self, request: service.ListChannelsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListChannelsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_channels(
+        self, request: service.ListChannelsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListChannelsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_channels
 
         Override in a subclass to manipulate the request or metadata
@@ -343,7 +382,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_channels(self, response: service.ListChannelsResponse) -> service.ListChannelsResponse:
+    def post_list_channels(
+        self, response: service.ListChannelsResponse
+    ) -> service.ListChannelsResponse:
         """Post-rpc interceptor for list_channels
 
         Override in a subclass to manipulate the response
@@ -351,7 +392,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_events(self, request: service.ListEventsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListEventsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_events(
+        self, request: service.ListEventsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListEventsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_events
 
         Override in a subclass to manipulate the request or metadata
@@ -359,7 +403,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_events(self, response: service.ListEventsResponse) -> service.ListEventsResponse:
+    def post_list_events(
+        self, response: service.ListEventsResponse
+    ) -> service.ListEventsResponse:
         """Post-rpc interceptor for list_events
 
         Override in a subclass to manipulate the response
@@ -367,7 +413,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_inputs(self, request: service.ListInputsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListInputsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_inputs(
+        self, request: service.ListInputsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListInputsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_inputs
 
         Override in a subclass to manipulate the request or metadata
@@ -375,7 +424,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_inputs(self, response: service.ListInputsResponse) -> service.ListInputsResponse:
+    def post_list_inputs(
+        self, response: service.ListInputsResponse
+    ) -> service.ListInputsResponse:
         """Post-rpc interceptor for list_inputs
 
         Override in a subclass to manipulate the response
@@ -383,7 +434,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_start_channel(self, request: service.StartChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.StartChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_start_channel(
+        self, request: service.StartChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.StartChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for start_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -391,7 +445,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_start_channel(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_start_channel(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for start_channel
 
         Override in a subclass to manipulate the response
@@ -399,7 +455,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_stop_channel(self, request: service.StopChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.StopChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_stop_channel(
+        self, request: service.StopChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.StopChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for stop_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -407,7 +466,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_stop_channel(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_stop_channel(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for stop_channel
 
         Override in a subclass to manipulate the response
@@ -415,7 +476,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_channel(self, request: service.UpdateChannelRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateChannelRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_channel(
+        self, request: service.UpdateChannelRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.UpdateChannelRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_channel
 
         Override in a subclass to manipulate the request or metadata
@@ -423,7 +487,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_channel(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_channel(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_channel
 
         Override in a subclass to manipulate the response
@@ -431,7 +497,10 @@ class LivestreamServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_input(self, request: service.UpdateInputRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateInputRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_input(
+        self, request: service.UpdateInputRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.UpdateInputRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_input
 
         Override in a subclass to manipulate the request or metadata
@@ -439,7 +508,9 @@ class LivestreamServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_input(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_input(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_input
 
         Override in a subclass to manipulate the response
@@ -474,20 +545,21 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'livestream.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[LivestreamServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "livestream.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[LivestreamServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -526,7 +598,9 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -537,10 +611,11 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -556,18 +631,20 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         """
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
-            http_options: Dict[str, List[Dict[str, str]]] = {
-            }
+            http_options: Dict[str, List[Dict[str, str]]] = {}
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -576,19 +653,26 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "channelId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "channelId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create channel method over HTTP.
 
             Args:
@@ -610,11 +694,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/channels',
-                'body': 'channel',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/channels",
+                    "body": "channel",
+                },
             ]
             request, metadata = self._interceptor.pre_create_channel(request, metadata)
             pb_request = service.CreateChannelRequest.pb(request)
@@ -623,33 +708,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -666,19 +753,26 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "eventId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "eventId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Event:
+        def __call__(
+            self,
+            request: service.CreateEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Event:
             r"""Call the create event method over HTTP.
 
             Args:
@@ -701,11 +795,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/channels/*}/events',
-                'body': 'event',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/channels/*}/events",
+                    "body": "event",
+                },
             ]
             request, metadata = self._interceptor.pre_create_event(request, metadata)
             pb_request = service.CreateEventRequest.pb(request)
@@ -714,33 +809,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -759,19 +856,26 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "inputId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "inputId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateInputRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.CreateInputRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create input method over HTTP.
 
             Args:
@@ -793,11 +897,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/inputs',
-                'body': 'input',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/inputs",
+                    "body": "input",
+                },
             ]
             request, metadata = self._interceptor.pre_create_input(request, metadata)
             pb_request = service.CreateInputRequest.pb(request)
@@ -806,33 +911,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -849,19 +956,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete channel method over HTTP.
 
             Args:
@@ -883,37 +995,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_channel(request, metadata)
             pb_request = service.DeleteChannelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -930,19 +1045,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: service.DeleteEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete event method over HTTP.
 
             Args:
@@ -957,37 +1077,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*/events/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*/events/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_event(request, metadata)
             pb_request = service.DeleteEventRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -998,19 +1121,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DeleteInputRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.DeleteInputRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete input method over HTTP.
 
             Args:
@@ -1032,37 +1160,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/inputs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/inputs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_input(request, metadata)
             pb_request = service.DeleteInputRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1079,19 +1210,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Channel:
+        def __call__(
+            self,
+            request: service.GetChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Channel:
             r"""Call the get channel method over HTTP.
 
             Args:
@@ -1118,37 +1254,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_channel(request, metadata)
             pb_request = service.GetChannelRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1167,19 +1306,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetEventRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Event:
+        def __call__(
+            self,
+            request: service.GetEventRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Event:
             r"""Call the get event method over HTTP.
 
             Args:
@@ -1202,37 +1346,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*/events/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*/events/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_event(request, metadata)
             pb_request = service.GetEventRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1251,19 +1398,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetInputRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.Input:
+        def __call__(
+            self,
+            request: service.GetInputRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.Input:
             r"""Call the get input method over HTTP.
 
             Args:
@@ -1285,37 +1437,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/inputs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/inputs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_input(request, metadata)
             pb_request = service.GetInputRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1334,19 +1489,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListChannels")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListChannelsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListChannelsResponse:
+        def __call__(
+            self,
+            request: service.ListChannelsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListChannelsResponse:
             r"""Call the list channels method over HTTP.
 
             Args:
@@ -1367,37 +1527,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/channels',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/channels",
+                },
             ]
             request, metadata = self._interceptor.pre_list_channels(request, metadata)
             pb_request = service.ListChannelsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1416,19 +1579,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListEvents")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListEventsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListEventsResponse:
+        def __call__(
+            self,
+            request: service.ListEventsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListEventsResponse:
             r"""Call the list events method over HTTP.
 
             Args:
@@ -1449,37 +1617,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/channels/*}/events',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/channels/*}/events",
+                },
             ]
             request, metadata = self._interceptor.pre_list_events(request, metadata)
             pb_request = service.ListEventsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1498,19 +1669,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListInputs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListInputsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListInputsResponse:
+        def __call__(
+            self,
+            request: service.ListInputsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListInputsResponse:
             r"""Call the list inputs method over HTTP.
 
             Args:
@@ -1531,37 +1707,40 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/inputs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/inputs",
+                },
             ]
             request, metadata = self._interceptor.pre_list_inputs(request, metadata)
             pb_request = service.ListInputsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1580,19 +1759,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("StartChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.StartChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.StartChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the start channel method over HTTP.
 
             Args:
@@ -1614,11 +1798,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*}:start',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*}:start",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_start_channel(request, metadata)
             pb_request = service.StartChannelRequest.pb(request)
@@ -1627,33 +1812,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1670,19 +1857,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("StopChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.StopChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.StopChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the stop channel method over HTTP.
 
             Args:
@@ -1704,11 +1896,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/channels/*}:stop',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/channels/*}:stop",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_stop_channel(request, metadata)
             pb_request = service.StopChannelRequest.pb(request)
@@ -1717,33 +1910,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1760,19 +1955,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("UpdateChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateChannelRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateChannelRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update channel method over HTTP.
 
             Args:
@@ -1794,11 +1994,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{channel.name=projects/*/locations/*/channels/*}',
-                'body': 'channel',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{channel.name=projects/*/locations/*/channels/*}",
+                    "body": "channel",
+                },
             ]
             request, metadata = self._interceptor.pre_update_channel(request, metadata)
             pb_request = service.UpdateChannelRequest.pb(request)
@@ -1807,33 +2008,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1850,19 +2053,24 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("UpdateInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateInputRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: service.UpdateInputRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update input method over HTTP.
 
             Args:
@@ -1884,11 +2092,12 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{input.name=projects/*/locations/*/inputs/*}',
-                'body': 'input',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{input.name=projects/*/locations/*/inputs/*}",
+                    "body": "input",
+                },
             ]
             request, metadata = self._interceptor.pre_update_input(request, metadata)
             pb_request = service.UpdateInputRequest.pb(request)
@@ -1897,33 +2106,35 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1937,132 +2148,122 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
             return resp
 
     @property
-    def create_channel_(self) -> Callable[
-            [service.CreateChannelRequest],
-            operations_pb2.Operation]:
+    def create_channel_(
+        self,
+    ) -> Callable[[service.CreateChannelRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_event(self) -> Callable[
-            [service.CreateEventRequest],
-            resources.Event]:
+    def create_event(self) -> Callable[[service.CreateEventRequest], resources.Event]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_input(self) -> Callable[
-            [service.CreateInputRequest],
-            operations_pb2.Operation]:
+    def create_input(
+        self,
+    ) -> Callable[[service.CreateInputRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateInput(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateInput(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_channel(self) -> Callable[
-            [service.DeleteChannelRequest],
-            operations_pb2.Operation]:
+    def delete_channel(
+        self,
+    ) -> Callable[[service.DeleteChannelRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_event(self) -> Callable[
-            [service.DeleteEventRequest],
-            empty_pb2.Empty]:
+    def delete_event(self) -> Callable[[service.DeleteEventRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_input(self) -> Callable[
-            [service.DeleteInputRequest],
-            operations_pb2.Operation]:
+    def delete_input(
+        self,
+    ) -> Callable[[service.DeleteInputRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteInput(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteInput(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_channel(self) -> Callable[
-            [service.GetChannelRequest],
-            resources.Channel]:
+    def get_channel(self) -> Callable[[service.GetChannelRequest], resources.Channel]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_event(self) -> Callable[
-            [service.GetEventRequest],
-            resources.Event]:
+    def get_event(self) -> Callable[[service.GetEventRequest], resources.Event]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetEvent(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetEvent(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_input(self) -> Callable[
-            [service.GetInputRequest],
-            resources.Input]:
+    def get_input(self) -> Callable[[service.GetInputRequest], resources.Input]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetInput(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetInput(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_channels(self) -> Callable[
-            [service.ListChannelsRequest],
-            service.ListChannelsResponse]:
+    def list_channels(
+        self,
+    ) -> Callable[[service.ListChannelsRequest], service.ListChannelsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListChannels(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListChannels(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_events(self) -> Callable[
-            [service.ListEventsRequest],
-            service.ListEventsResponse]:
+    def list_events(
+        self,
+    ) -> Callable[[service.ListEventsRequest], service.ListEventsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListEvents(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListEvents(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_inputs(self) -> Callable[
-            [service.ListInputsRequest],
-            service.ListInputsResponse]:
+    def list_inputs(
+        self,
+    ) -> Callable[[service.ListInputsRequest], service.ListInputsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListInputs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListInputs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def start_channel(self) -> Callable[
-            [service.StartChannelRequest],
-            operations_pb2.Operation]:
+    def start_channel(
+        self,
+    ) -> Callable[[service.StartChannelRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._StartChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._StartChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def stop_channel(self) -> Callable[
-            [service.StopChannelRequest],
-            operations_pb2.Operation]:
+    def stop_channel(
+        self,
+    ) -> Callable[[service.StopChannelRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._StopChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._StopChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_channel(self) -> Callable[
-            [service.UpdateChannelRequest],
-            operations_pb2.Operation]:
+    def update_channel(
+        self,
+    ) -> Callable[[service.UpdateChannelRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateChannel(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateChannel(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_input(self) -> Callable[
-            [service.UpdateInputRequest],
-            operations_pb2.Operation]:
+    def update_input(
+        self,
+    ) -> Callable[[service.UpdateInputRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateInput(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateInput(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -2072,6 +2273,4 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'LivestreamServiceRestTransport',
-)
+__all__ = ("LivestreamServiceRestTransport",)
