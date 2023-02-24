@@ -17,7 +17,7 @@
 import dataclasses
 import json  # type: ignore
 import re
-from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
 
 from google.api_core import (
@@ -679,7 +679,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {
             "channelId": "",
         }
 
@@ -779,7 +779,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {
             "eventId": "",
         }
 
@@ -882,7 +882,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("CreateInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {
             "inputId": "",
         }
 
@@ -982,7 +982,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1071,7 +1071,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1147,7 +1147,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("DeleteInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1236,7 +1236,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1332,7 +1332,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetEvent")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1424,7 +1424,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("GetInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1515,7 +1515,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListChannels")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1605,7 +1605,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListEvents")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1695,7 +1695,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("ListInputs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1785,7 +1785,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("StartChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1883,7 +1883,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("StopChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1981,7 +1981,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("UpdateChannel")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -2079,7 +2079,7 @@ class LivestreamServiceRestTransport(LivestreamServiceTransport):
         def __hash__(self):
             return hash("UpdateInput")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
