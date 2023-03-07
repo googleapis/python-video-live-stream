@@ -1,0 +1,49 @@
+# openapi2-functions.yaml
+swagger: "2.0"
+info:
+  title: livestream-key-publisher-api
+  description: Live Stream Key Publisher API
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /keys:
+    post:
+      summary: Prepares encryption keys
+      operationId: PrepareKeys
+      x-google-backend:
+        address: CLOUD_FUNCTION_URL
+      security:
+        - api_key: []
+      parameters:
+        - name: keyInfo
+          in: body
+          description: Information on keys to prepare
+          schema:
+            type: object
+            required:
+              - mediaId
+              - provider
+              - keyIds
+            properties:
+              mediaId:
+                type: string
+              provider:
+                type: string
+              keyIds:
+                type: array
+                items:
+                  type: string
+      responses:
+        "200":
+          description: A successful response
+          schema:
+            type: string
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "query"
