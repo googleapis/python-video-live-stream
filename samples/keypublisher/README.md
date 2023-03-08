@@ -260,6 +260,12 @@ gcloud api-gateway gateways update livestream-key-publisher-api-gateway \
 You can run unit tests for this code in a local environment. These tests do not
 utilize external services (e.g. Google Cloud Functions, Google Secret Manager).
 
+Install python virtual environment:
+
+```shell 
+sudo apt-get install python3-venv
+```
+
 Create a local virtual environment for running tests:
 
 ```shell
