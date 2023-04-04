@@ -49,7 +49,7 @@ class CpixClient(abc.ABC):
             set.
         """
 
-    def access_secret_version(self, secret_id, version_id):
+    def access_secret_version(self, secret_id: str, version_id: str) -> list[str]:
         client = secretmanager.SecretManagerServiceClient()
         project_id = os.environ.get('PROJECT')
         secret_name = (

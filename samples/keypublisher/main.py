@@ -28,7 +28,7 @@ PROVIDERS = {
 }
 
 
-def http_response(msg, status):
+def http_response(msg: str, status: Union[int, str]) -> str:
     """Prepares HTTP response to the client calling the function.
 
     Args:
@@ -46,7 +46,7 @@ def http_response(msg, status):
     )
 
 
-def write_secret(secret_id, payload):
+def write_secret(secret_id: str, payload: str) -> str:
     """Writes a secret to Secret Manager.
 
     If the secret does not exist, it will be created and an initial version
