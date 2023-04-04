@@ -30,8 +30,9 @@ gcloud services enable servicemanagement.googleapis.com
 ### Create service accounts
 
 Two service accounts are needed for your key publisher. The first allows your
-API Gateway to invoke your cloud function, and the second allows Cloud Functions
-to read and write to Secret Manager.
+API Gateway to invoke your cloud function (with the IAM role of
+`roles/cloudfunctions.invoker`), and the second allows Cloud Functions to read
+and write to Secret Manager (with the IAM role of `roles/secretmanager.admin`).
 
 Create the service account for invoking Cloud Functions:
 
@@ -44,8 +45,8 @@ gcloud iam service-accounts create livestream-cf-invoker \
 Then configure the IAM policy binding:
 
 ```shell
-gcloud projects add-iam-policy-binding my-project \
-  --member serviceAccount:"livestream-cf-invoker@my-project.iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding [MY-PROJECT] \
+  --member serviceAccount:"livestream-cf-invoker@[MY-PROJECT].iam.gserviceaccount.com" \
   --role "roles/cloudfunctions.invoker" \
   --no-user-output-enabled \
   --quiet
@@ -62,8 +63,8 @@ gcloud iam service-accounts create livestream-cloud-functions \
 Then configure the IAM policy binding:
 
 ```shell
-gcloud projects add-iam-policy-binding my-project \
-  --member serviceAccount:"livestream-cloud-functions@my-project.iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding [MY-PROJECT] \
+  --member serviceAccount:"livestream-cloud-functions@[MY-PROJECT].iam.gserviceaccount.com" \
   --role "roles/secretmanager.admin" \
   --no-user-output-enabled \
   --quiet
@@ -76,7 +77,7 @@ your function. This file should have the following contents:
 
 ```yaml
 # Your project ID.
-PROJECT: my-project
+PROJECT: [MY-PROJECT]
 # The endpoint of the CPIX API the key publisher will be calling.
 CPIX_ENDPOINT: https://cpix-api.url
 # The ID of the secret containing the provider's public certificate.
@@ -102,7 +103,7 @@ gcloud functions deploy livestream-key-publisher \
   --security-level=secure-always \
   --timeout=60s \
   --env-vars-file=.env.yaml \
-  --service-account="livestream-cloud-functions@my-project.iam.gserviceaccount.com"
+  --service-account="livestream-cloud-functions@[MY-PROJECT].iam.gserviceaccount.com"
 ```
 
 After your function is deployed, the response you get will contain the
@@ -129,7 +130,7 @@ gcloud api-gateway api-configs create livestream-key-publisher-api-config-1 \
   --display-name="Live Stream Key Publisher API Config v1" \
   --api=livestream-key-publisher-api \
   --openapi-spec="api-config.yml" \
-  --backend-auth-service-account="livestream-cf-invoker@my-project.iam.gserviceaccount.com"
+  --backend-auth-service-account="livestream-cf-invoker@[MY-PROJECT].iam.gserviceaccount.com"
 ```
 
 Next, create the API Gateway:
@@ -152,7 +153,7 @@ You will get the `managedService` field in the response. This is the service you
 need to enable. For example,
 
 ```shell
-gcloud services enable livestream-key-publisher-api-144h6p0e7bzc1.apigateway.my-project.cloud.goog
+gcloud services enable livestream-key-publisher-api-144h6p0e7bzc1.apigateway.[MY-PROJECT].cloud.goog
 ```
 
 Now you need to locate the endpoint URL of your API. Run a command to describe
@@ -170,10 +171,13 @@ defaultHostname: livestream-key-publisher-api-gateway-48mwfke9.uc.gateway.dev
 
 You will send API requests to this URL.
 
-Create an API key to use for making queries to your API:
+Create an API key to use for making queries to your API, and restrict the API
+key such that only your newly created `livestream-key-publisher-api` can be
+called with the API key. Specify the API restriction with the `managedService`
+field from earlier:
 
 ```shell
-gcloud alpha services api-keys create
+gcloud alpha services api-keys create --api-target=service=[managedService]
 ```
 
 You will get the `keyString` field in the response. This is your API key. Save
@@ -231,7 +235,7 @@ gcloud functions deploy livestream-key-publisher \
   --security-level=secure-always \
   --timeout=60s \
   --env-vars-file=.env.yaml \
-  --service-account="livestream-cloud-functions@my-project.iam.gserviceaccount.com"
+  --service-account="livestream-cloud-functions@[MY-PROJECT].iam.gserviceaccount.com"
 ```
 
 If request paths or parameters have changed, you may also need to update
@@ -243,7 +247,7 @@ gcloud api-gateway api-configs create livestream-key-publisher-api-config-2 \
   --display-name="Live Stream Key Publisher API Config v2" \
   --api=livestream-key-publisher-api \
   --openapi-spec="api-config.yml" \
-  --backend-auth-service-account="livestream-cf-invoker@my-project.iam.gserviceaccount.com"
+  --backend-auth-service-account="livestream-cf-invoker@[MY-PROJECT].iam.gserviceaccount.com"
 ```
 
 Once the config has been created, update the API Gateway to use your new config:
@@ -262,7 +266,7 @@ utilize external services (e.g. Google Cloud Functions, Google Secret Manager).
 
 Install python virtual environment:
 
-```shell 
+```shell
 sudo apt-get install python3-venv
 ```
 
