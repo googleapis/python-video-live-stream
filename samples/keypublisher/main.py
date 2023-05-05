@@ -17,11 +17,12 @@
 import json
 import os
 
-import clients.fake_client
 from flask import current_app
 import functions_framework
 import google.api_core.exceptions
 from google.cloud import secretmanager
+
+import clients.fake_client
 
 PROVIDERS = {
     "FakeProvider": clients.fake_client.FakeClient,
