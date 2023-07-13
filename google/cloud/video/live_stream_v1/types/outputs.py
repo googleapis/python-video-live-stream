@@ -335,6 +335,7 @@ class PreprocessingConfig(proto.Message):
                 loudness units relative to full scale (LUFS).
                 Enter a value between -24 and 0 according to the
                 following:
+
                 - -24 is the Advanced Television Systems
                   Committee (ATSC A/85)
                 - -23 is the EU R128 broadcast standard
