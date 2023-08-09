@@ -484,6 +484,7 @@ class VideoStream(proto.Message):
             bitrate_bps (int):
                 Required. The video bitrate in bits per
                 second. Minimum value is 10,000.
+
                 - For SD resolution (< 720p), must be <=
                   3,000,000 (3 Mbps).
                 - For HD resolution (<= 1080p), must be <=
