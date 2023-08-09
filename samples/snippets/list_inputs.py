@@ -24,11 +24,12 @@ Example usage:
 import argparse
 
 from google.cloud.video.live_stream_v1.services.livestream_service import (
+    pagers,
     LivestreamServiceClient,
 )
 
 
-def list_inputs(project_id: str, location: str) -> list:
+def list_inputs(project_id: str, location: str) -> pagers.ListInputsPager:
     """Lists all inputs in a location.
     Args:
         project_id: The GCP project ID.
