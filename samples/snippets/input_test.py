@@ -17,7 +17,6 @@ import uuid
 
 from google.api_core.exceptions import FailedPrecondition, NotFound
 from google.protobuf import empty_pb2 as empty
-
 import pytest
 
 import create_input
